@@ -1,13 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <script>
-        // Redirecionar para checkout.html mantendo parâmetros
-        window.location.href = '/checkout.html' + window.location.search;
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Vercel - PIX Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .success {
+            color: #28a745;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .info {
+            color: #666;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecionando...</p>
+    <div class="container">
+        <h1>🚀 Vercel funcionando!</h1>
+        <div class="success">✅ Deploy realizado com sucesso</div>
+        <div class="info">Agora vamos configurar o PIX checkout...</div>
+        
+        <div id="params-info"></div>
+        
+        <script>
+            // Mostrar parâmetros da URL se existirem
+            const urlParams = new URLSearchParams(window.location.search);
+            const pix = urlParams.get('pix');
+            const qr = urlParams.get('qr');
+            
+            if (pix || qr) {
+                document.getElementById('params-info').innerHTML = `
+                    <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px;">
+                        <h3>✅ Parâmetros detectados!</h3>
+                        <p><strong>PIX:</strong> ${pix ? 'Recebido' : 'Não informado'}</p>
+                        <p><strong>QR:</strong> ${qr ? 'Recebido' : 'Não informado'}</p>
+                    </div>
+                `;
+            }
+        </script>
+    </div>
 </body>
 </html>
